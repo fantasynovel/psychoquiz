@@ -160,6 +160,28 @@ const quizData = {
   }
 };
 
+// Preload all question and result images
+function preloadImages() {
+  const imageUrls = [];
+
+  // 預載題目圖片
+  quizData.questions.forEach(q => {
+    if (q.image) imageUrls.push(q.image);
+  });
+
+  // 預載結果圖片
+  Object.values(quizData.personalities).forEach(p => {
+    if (p.image) imageUrls.push(p.image);
+  });
+
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
+preloadImages(); 
+
 // Quiz state management
 let currentState = 'welcome'; // 'welcome', 'question', 'result'
 let currentQuestion = 0;
@@ -191,26 +213,6 @@ const resultMatch = document.getElementById('result-match');
 const resultColor = document.getElementById('result-color');
 const colorDots = document.getElementById('color-dots');
 const resultLocations = document.getElementById('result-locations');
-
-// Preload all question and result images
-function preloadImages() {
-  const imageUrls = [];
-
-  // 預載題目圖片
-  quizData.questions.forEach(q => {
-    if (q.image) imageUrls.push(q.image);
-  });
-
-  // 預載結果圖片
-  Object.values(quizData.personalities).forEach(p => {
-    if (p.image) imageUrls.push(p.image);
-  });
-
-  imageUrls.forEach(url => {
-    const img = new Image();
-    img.src = url;
-  });
-}
 
 // Initialize the quiz
 function init() {
@@ -478,7 +480,7 @@ async function shareAssetImageToIG(slug, personalityName, shareText) {
   }
 }
 
-function shareToIG() {
+async function shareToIG() {
   if (result) {
     const personality = quizData.personalities[result];
     const slugMap = {
@@ -491,7 +493,9 @@ function shareToIG() {
     };
     const slug = slugMap[result];
     const shareText = `我的理想情人是${personality.name}！`;
-    shareAssetImageToIG(slug, personality.name, shareText);
+
+    // 確保等待分享完成後再決定是否要 fallback
+    await shareAssetImageToIG(slug, personality.name, shareText);
   }
 }
 
