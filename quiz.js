@@ -451,32 +451,33 @@ async function shareAssetImageToIG(slug, personalityName, shareText) {
         text: shareText,
         files: filesArray
       });
-      return;
+      return; // 成功分享就結束，不進行 fallback
+    }
+
+  // 若不支援 navigator.share，則走 fallback 流程
+    throw new Error('Navigator.share not supported');
     } catch (err) {
-      alert('分享失敗，請手動下載圖片後上傳 IG Story！');
-    }
-  }
+    // 3. Fallback：自動下載圖片
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${personalityName}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 
-  // 3. Fallback：自動下載圖片
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = `${personalityName}.png`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-
-  // 4. Fallback：複製文字
-  if (navigator.clipboard) {
-    try {
-      await navigator.clipboard.writeText(shareText);
-      alert('裝置不支援一鍵分享。\n圖片已下載，結果文字已複製，請至 IG Story 上傳並貼上文字！');
-    } catch {
-      alert(`裝置不支援一鍵分享。\n圖片已下載，請手動複製以下文字：\n${shareText}`);
+    // 4. Fallback：複製文字
+    if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(shareText);
+        alert('圖片已下載，結果文字已複製，請至 IG Story 上傳並貼上文字！');
+      } catch {
+        alert(`圖片已下載，請手動複製以下文字：\n${shareText}`);
+      }
+    } else {
+      alert(`圖片已下載，請手動複製以下文字：\n${shareText}`);
     }
-  } else {
-    alert(`裝置不支援一鍵分享。\n圖片已下載，請手動複製以下文字：\n${shareText}`);
   }
 }
 
