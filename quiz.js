@@ -435,29 +435,26 @@ function downloadImage() {
 
 // Share to Instagram
 async function shareAssetImageToIG(slug, personalityName, shareText) {
-  const imageUrl = `./src/assets/Result_${slug}.png`;
+  try { 
+    const imageUrl = `./src/assets/Result_${slug}.png`;
 
-  // 1. 取得圖片 Blob
-  const response = await fetch(imageUrl);
-  const blob = await response.blob();
-  const file = new File([blob], `${personalityName}.png`, { type: 'image/png' });
-  const filesArray = [file];
+    // 1. 取得圖片 Blob
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    const file = new File([blob], `${personalityName}.png`, { type: 'image/png' });
+    const filesArray = [file];
 
-  // 2. 分享圖片到 IG（若支援）
-  if (navigator.canShare && navigator.canShare({ files: filesArray })) {
-    try {
+    // 2. 嘗試使用原生分享（限支援裝置）
+    if (navigator.canShare && navigator.canShare({ files: filesArray })) {
       await navigator.share({
         title: personalityName,
         text: shareText,
         files: filesArray
       });
-      return; // 成功分享就結束，不進行 fallback
+      return; 
     }
 
-  // 若不支援 navigator.share，則走 fallback 流程
-    throw new Error('Navigator.share not supported');
-    } catch (err) {
-    // 3. Fallback：自動下載圖片
+    // 3. fallback：自動下載圖片
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -467,17 +464,16 @@ async function shareAssetImageToIG(slug, personalityName, shareText) {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 
-    // 4. Fallback：複製文字
+    // 4. fallback：複製文字
     if (navigator.clipboard) {
-      try {
-        await navigator.clipboard.writeText(shareText);
-        alert('圖片已下載，結果文字已複製，請至 IG Story 上傳並貼上文字！');
-      } catch {
-        alert(`圖片已下載，請手動複製以下文字：\n${shareText}`);
-      }
-    } else {
-      alert(`圖片已下載，請手動複製以下文字：\n${shareText}`);
+      await navigator.clipboard.writeText(shareText); // **MODIFIED**：補上 await，避免 race condition
     }
+
+    alert('裝置不支援分享功能，圖片已下載，結果文字也已複製，請至 IG Story 上傳並貼上文字！'); // **MODIFIED**：只留一個 fallback alert
+
+  } catch (error) {
+    console.error('分享流程錯誤', error); // **MODIFIED**：提供除錯資訊
+    alert('發生錯誤，請手動下載圖片並上傳 IG Story。'); // **MODIFIED**：錯誤處理 alert
   }
 }
 
