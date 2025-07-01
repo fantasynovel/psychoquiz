@@ -192,6 +192,26 @@ const resultColor = document.getElementById('result-color');
 const colorDots = document.getElementById('color-dots');
 const resultLocations = document.getElementById('result-locations');
 
+// Preload all question and result images
+function preloadImages() {
+  const imageUrls = [];
+
+  // 預載題目圖片
+  quizData.questions.forEach(q => {
+    if (q.image) imageUrls.push(q.image);
+  });
+
+  // 預載結果圖片
+  Object.values(quizData.personalities).forEach(p => {
+    if (p.image) imageUrls.push(p.image);
+  });
+
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
 // Initialize the quiz
 function init() {
   showWelcomePage();
