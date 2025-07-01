@@ -3,7 +3,7 @@ const quizData = {
   questions: [
     {
       id: 1,
-      image: "src/assets/img_question_one.png",
+      image: "./src/assets/img_question_one.png",
       question: "你到了共居公寓，最先注意到哪個人？",
       options: [
         { id: "A", text: "主動帶動氣氛，邀請大家自我介紹", type: "熱情探索型" },
@@ -14,7 +14,7 @@ const quizData = {
     },
     {
       id: 2,
-      image: "src/assets/img_question_two.png",
+      image: "./src/assets/img_question_two.png",
       question: "晚上共同烹飪時，他會如何表現？",
       options: [
         { id: "A", text: "主動分配每個人的工作", type: "主動領導型" },   
@@ -25,7 +25,7 @@ const quizData = {
     },
     {
       id: 3,
-      image: "src/assets/img_question_three.png",
+      image: "./src/assets/img_question_three.png",
       question: "晚上閒聊時間，玩真心話大冒險，他的反應是？",
       options: [
         { id: "A", text: "選大冒險，用行動展現自己", type: "熱情探索型" }, 
@@ -36,7 +36,7 @@ const quizData = {
     },
     {
       id: 4,
-      image: "src/assets/img_question_four.png",
+      image: "./src/assets/img_question_four.png",
       question: "你獨自在陽台發呆，他來找你，他可能會說什麼？",
       options: [
         { id: "A", text: "「需要聊聊嗎？別獨自煩惱」", type: "暖心陪伴型" },  
@@ -47,7 +47,7 @@ const quizData = {
     },
     {
       id: 5,
-      image: "src/assets/img_question_five.png",
+      image: "./src/assets/img_question_five.png",
       question: "如果有人向你表示心意，他的反應是？",
       options: [
         { id: "A", text: "立即上前表示關心", type: "主動領導型" },
@@ -58,7 +58,7 @@ const quizData = {
     },
     {
       id: 6,
-      image: "src/assets/img_question_six.png",
+      image: "./src/assets/img_question_six.png",
       question: "當你身體不適時，他的照顧方式是？",
       options: [
         { id: "A", text: "迅速帶著藥和食物，主動到你身旁關心", type: "主動領導型" },
@@ -69,7 +69,7 @@ const quizData = {
     },
     {
       id: 7,
-      image: "src/assets/img_question_seven.png",
+      image: "./src/assets/img_question_seven.png",
       question: "第一次單獨約會，他會安排什麼行程？",
       options: [
         { id: "A", text: "提前預約餐廳和交通，讓你輕鬆享受", type: "主動領導型" },
@@ -80,7 +80,7 @@ const quizData = {
     },
     {
       id: 8,
-      image: "src/assets/img_question_eight.png",
+      image: "./src/assets/img_question_eight.png",
       question: "節目快結束了，他會對你說？",
       options: [
         { id: "A", text: "「如果你也願意，我們繼續一起走吧」", type: "主動領導型" },
@@ -93,7 +93,7 @@ const quizData = {
   personalities: {
     "熱情探索型": {
       name: "熱情探索型",
-      image: "/src/assets/img_player.png",
+      image: "./src/assets/img_player.png",
       style: "喜歡熱烈又充滿創意的戀愛體驗，尋找能共同製造精彩瞬間的夥伴。",
       match: "適合一起冒險、敢於嘗試新鮮事物並樂於分享的伴侶。",
       color: "夕陽暖橘",
@@ -104,7 +104,7 @@ const quizData = {
     },
     "穩重守護型": {
       name: "穩重守護型",
-      image: "/src/assets/img_guardian.png",
+      image: "./src/assets/img_guardian.png",
       style: "透過實際行動表達關心與承諾，欣賞踏實可靠的伴侶。",
       match: "適合有責任感、願意用心守護彼此日常的伴侶。",
       color: "醇濃酒紅",
@@ -115,7 +115,7 @@ const quizData = {
     },
     "暖心陪伴型": {
       name: "暖心陪伴型",
-      image: "/src/assets/img_companion.png",
+      image: "./src/assets/img_companion.png",
       style: "擅長傾聽與安撫情緒，能在脆弱時互相支持對方。",
       match: "情感細膩、願意照顧彼此心情的伴侶。",
       color: "奶油暖黃",
@@ -126,7 +126,7 @@ const quizData = {
     },
     "主動領導型": {
       name: "主動領導型",
-      image: "/src/assets/img_boss.png",
+      image: "./src/assets/img_boss.png",
       style: "欣賞充滿決斷力與保護慾的戀愛，尋求能主動表達關愛的伴侶。",
       match: "主動、敢於承擔並給予安全感的對象。",
       color: "石墨鋯灰",
@@ -137,7 +137,7 @@ const quizData = {
     },
     "理性分析型": {
       name: "理性分析型",
-      image: "/src/assets/img_calm.png",
+      image: "./src/assets/img_calm.png",
       style: "偏好理性成熟的溝通模式，希望找到能冷靜面對困難的伴侶。",
       match: "適合重視理性討論、善於調和衝突的伴侶。",
       color: "苔蘚灰綠",
@@ -148,7 +148,7 @@ const quizData = {
     },
     "心靈共振型": {
       name: "心靈共振型",
-      image: "/src/assets/img_soul.png",
+      image: "./src/assets/img_soul.png",
       style: "渴望有意義的交流、追求心靈的共鳴",
       match: "願意分享想法、善於傾聽與共感的伴侶",
       color: "靜謐藍",
@@ -405,7 +405,7 @@ function downloadImage() {
      "心靈共振型": "soulful"
     };
     const slug = slugMap[result];
-    link.href = `src/assets/Result_${slug}.png`;
+    link.href = `./src/assets/Result_${slug}.png`;
     link.download = `${personality.name}.png`;
     link.click();
   }
@@ -413,7 +413,7 @@ function downloadImage() {
 
 // Share to Instagram
 async function shareAssetImageToIG(slug, personalityName, shareText) {
-  const imageUrl = `src/assets/Result_${slug}.png`;
+  const imageUrl = `./src/assets/Result_${slug}.png`;
 
   // 1. 取得圖片 Blob
   const response = await fetch(imageUrl);
