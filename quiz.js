@@ -469,11 +469,11 @@ async function shareAssetImageToIG(slug, personalityName, shareText) {
       await navigator.clipboard.writeText(shareText); // **MODIFIED**：補上 await，避免 race condition
     }
 
-    alert('裝置不支援分享功能，圖片已下載，結果文字也已複製，請至 IG Story 上傳並貼上文字！'); // **MODIFIED**：只留一個 fallback alert
+    alert('裝置不支援分享功能，圖片已下載，結果文字也已複製，請至 IG Story 上傳並貼上文字！'); 
 
   } catch (error) {
-    console.error('分享流程錯誤', error); // **MODIFIED**：提供除錯資訊
-    alert('發生錯誤，請手動下載圖片並上傳 IG Story。'); // **MODIFIED**：錯誤處理 alert
+    console.error('分享流程錯誤', error); 
+    alert('若無成功分享，可以手動下載圖片並上傳 IG Story～'); 
   }
 }
 
