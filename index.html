@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="心理測驗 - 找到你的理想情人類型" />
+    <meta name="keywords" content="心理測驗, 愛情, 理想情人, 配對" />
+    <title>理想情人心理測驗 | 找到你的 The One</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="min-h-screen bg-quiz-brown">
+    <div class="container mx-auto px-4 py-8 flex items-center justify-center min-h-screen">
+      <div class="w-full max-w-sm mx-auto">
+        
+        <!-- Welcome Page -->
+        <div id="welcome-page" class="bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-102">
+          <div class="relative h-80 sm:h-96 md:h-[500px]">
+            <img 
+              src="/src/assets/img_cover.png" 
+              alt="Quiz Cover" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          
+          <div class="p-6 text-center bg-quiz-brown text-white">
+            <p class="text-white/80 text-sm mb-6 leading-relaxed">
+              參加一場戀愛實境秀<br />配對你的命定戀人
+            </p>
+            
+            <button
+              id="start-quiz-btn"
+              class="w-full font-semibold py-3 px-6 rounded-lg transform transition-all duration-200 hover:scale-105 active:scale-95 bg-white start-quiz-btn"
+            >
+              開始測驗
+            </button>
+          </div>
+        </div>
+
+        <!-- Question Page -->
+        <div id="question-page" class="space-y-6 hidden">
+        
+
+          <!-- Question Card -->
+          <div class="question-card rounded-2xl shadow-2xl overflow-hidden">
+            <!-- Progress Bar -->
+
+            <div class="wrapper p-6">
+              <div class="space-y-2">
+                <div class="flex justify-between items-center text-white text-sm">
+                  <span id="question-counter">題目 1 / 8</span>
+                  <span id="progress-percentage">13%</span>
+                </div>
+                <div class="progress-bar w-full bg-white/30 rounded-full h-2">
+                  <div 
+                    id="progress-bar"
+                    class="bg-white h-2 rounded-full transition-all duration-500 ease-out"
+                    style="width: 13%"
+                  ></div>
+                </div>
+              </div>
+              <img 
+              id="question-image"
+              src="https://images.pexels.com/photos/1024967/pexels-photo-1024967.jpeg?auto=compress&cs=tinysrgb&w=400" 
+              alt="Question" 
+              class="w-full h-full object-cover rounded-2xl"
+            />
+            </div>
+            
+            <div class="p-6">
+              <h2 id="question-text" class="text-lg font-bold mb-6">
+                你到了實境秀戀愛小屋現場，對誰印象最深刻？
+              </h2>
+              
+              <div id="options-container" class="space-y-3">
+                <!-- Options will be dynamically generated -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="result-page" class="result-page-container hidden">
+          <!-- Result Card -->
+          <div class="result-card">
+            <!-- Image Section -->
+            <div class="result-image-section">
+              <img id="result-image" src="/src/assets/img_guardian.png" alt="Result" class="result-background-image">
+            </div>
+            
+            <!-- Content Section -->
+            <div class="result-content-section">
+              <!-- Title Section -->
+              <div class="result-title-section">
+                <p class="result-subtitle">你的理想情人是</p>
+                <h1 id="result-title" class="result-main-title">默默守護型</h1>
+              </div>
+              
+              <!-- Info Cards -->
+              <div class="result-info-cards">
+                <!-- Love Style -->
+                <div class="wrapper">
+                    <p class="result-card-label">你的戀愛風格</p>
+                  <div class="result-info-card">
+                    <p id="result-style" class="result-card-content">以行動代替言語，用付出表現愛意</p>
+                  </div>
+                </div>
+                <div class="wrapper">
+                  <p class="result-card-label">適合的戀人</p>
+                  <!-- Match -->
+                  <div class="result-info-card">
+                      <p id="result-match" class="result-card-content">實際又可靠、生活感強、重承諾的人。</p>
+                  </div>
+                </div>
+                
+                <!-- Color and Locations -->
+                <div class="result-bottom-cards">
+                    <div class="wrapper">
+                      <p class="result-card-label">戀愛代表色</p>
+                    <div class="result-info-card result-color-card">
+                      <p id="result-color" class="result-card-content">醇濃酒紅</p>
+                      <div id="color-dots" class="result-color-dots"><div class="result-color-dot" style="background-color: rgb(139, 69, 19);"></div><div class="result-color-dot" style="background-color: rgb(160, 82, 45);"></div><div class="result-color-dot" style="background-color: rgb(205, 133, 63);"></div></div>
+                    </div>
+                  </div>
+                  
+                    <div class="wrapper">
+                      <p class="result-card-label">約會地點</p>
+                      <div class="result-info-card result-location-card">
+                        <div id="result-locations" class="result-locations-list"><p class="result-location-item">廚房</p><p class="result-location-item">公路旅程</p></div>
+                      </div>
+                    </div>
+                </div>
+                <!-- Action Buttons -->
+                <div class="result-buttons">
+                  <button id="restart-btn" class="result-restart-btn">
+                    重新測驗
+                  </button>
+                  
+                  <div class="result-action-buttons">
+                    <button id="download-btn" class="result-action-btn result-download-btn">
+                      下載圖片
+                    </button>
+                    
+                    <button id="share-btn" class="result-action-btn result-share-btn">
+                      分享至 IG
+                    </button>
+                  </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          
+  
+
+      </div>
+    </div>
+
+    <script src="quiz.js"></script>
+  </body>
+</html>
